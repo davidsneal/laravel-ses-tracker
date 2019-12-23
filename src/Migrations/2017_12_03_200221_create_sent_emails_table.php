@@ -20,6 +20,7 @@ class CreateSentEmailsTable extends Migration
             $table->string('batch')->nullable();
             $table->dateTime('sent_at')->nullable();
             $table->dateTime('delivered_at')->nullable();
+            $table->boolean('unsubscribe')->default(false);
             $table->boolean('complaint_tracking')->default(false);
             $table->boolean('delivery_tracking')->default(false);
             $table->boolean('bounce_tracking')->default(false);
