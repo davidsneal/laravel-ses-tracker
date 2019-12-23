@@ -24,7 +24,7 @@ class EmailLink extends Model
 
     public function incrementClickCount()
     {
-        $this->click_count++;
+        $this->click_count = 1;
         $this->save();
         return $this;
     }

@@ -40,7 +40,8 @@ class MailProcessor
         $beaconIdentifier = Uuid::uuid4()->toString();
         $beaconUrl = config('app.url') . "/laravel-ses/beacon/$beaconIdentifier";
 
-        EmailOpen::create([
+        EmailOpen::create
+        ([
             'sent_email_id' => $this->sentEmail->id,
             'email' => $this->sentEmail->email,
             'batch' => $this->sentEmail->batch,
@@ -48,36 +49,39 @@ class MailProcessor
             'url' => $beaconUrl,
         ]);
 
-        $this->setEmailBody($this->getEmailBody() . "<img src=\"$beaconUrl\""
-        . " alt=\"\" style=\"width:1px;height:1px;\"/>");
+        $this->setEmailBody($this->getEmailBody() . "<img src=\"$beaconUrl\"" . " alt=\"\" style=\"width:1px;height:1px;\"/>");
         return $this;
     }
 
     public function linkTracking()
     {
-        $dom = new Dom;
-        $dom->load($this->getEmailBody());
-        $anchors = $dom->find('a');
-        foreach ($anchors as $anchor) {
-            $originalUrl = $anchor->getAttribute('href');
-            $anchor->setAttribute('href', $this->createAppLink($originalUrl));
+        $url_expression = '/<a[^>]+href=([\'"])(?<href>.+?)\1[^>]*>/i';
+        preg_match_all($url_expression, $this->getEmailBody(), $result);
+
+        foreach($result[2] as $originalUrl)
+        {
+            $this->createAppLink($originalUrl);
         }
-        $this->setEmailBody($dom->innerHtml);
+
         return $this;
     }
 
     private function createAppLink(string $originalUrl)
     {
         $linkIdentifier = Uuid::uuid4()->toString();
+        $linkUrl = "https://rapportstar.ml/laravel-ses/link/$linkIdentifier";
 
-        //first create the link
-        $link = EmailLink::create([
+        $link = EmailLink::create
+        ([
             'sent_email_id' => $this->sentEmail->id,
             'batch' => $this->sentEmail->batch,
             'link_identifier' => $linkIdentifier,
             'original_url' => $originalUrl
         ]);
 
-        return config('app.url') . "/laravel-ses/link/$linkIdentifier";
+        $replaceUrl = str_replace($originalUrl, $linkUrl, $this->getEmailBody());
+        $this->setEmailBody($replaceUrl);
+
+        return $this;
     }
 }
