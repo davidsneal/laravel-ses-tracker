@@ -1,6 +1,6 @@
 <?php
 
-namespace oliveready7\LaravelSes;
+namespace andytan07\LaravelSesTracker;
 
 use Aws\Ses\SesClient;
 use Aws\Sns\SnsClient;

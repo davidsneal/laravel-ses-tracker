@@ -1,8 +1,8 @@
 <?php
 
-namespace oliveready7\LaravelSes;
+namespace andytan07\LaravelSesTracker;
 
-use oliveready7\LaravelSes\Models\SentEmail;
+use andytan07\LaravelSesTracker\Models\SentEmail;
 
 interface SesMailerInterface
 {

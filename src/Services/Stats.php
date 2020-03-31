@@ -1,12 +1,12 @@
 <?php
 
-namespace oliveready7\LaravelSes\Services;
+namespace andytan07\LaravelSesTracker\Services;
 
-use oliveready7\LaravelSes\Models\SentEmail;
-use oliveready7\LaravelSes\Models\EmailLink;
-use oliveready7\LaravelSes\Models\EmailBounce;
-use oliveready7\LaravelSes\Models\EmailComplaint;
-use oliveready7\LaravelSes\Models\EmailOpen;
+use andytan07\LaravelSesTracker\Models\SentEmail;
+use andytan07\LaravelSesTracker\Models\EmailLink;
+use andytan07\LaravelSesTracker\Models\EmailBounce;
+use andytan07\LaravelSesTracker\Models\EmailComplaint;
+use andytan07\LaravelSesTracker\Models\EmailOpen;
 
 class Stats
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace oliveready7\LaravelSes\Tests\Feature;
+namespace andytan07\LaravelSesTracker\Tests\Feature;
 
-use oliveready7\LaravelSes\Models\SentEmail;
-use oliveready7\LaravelSes\Models\EmailComplaint;
-use oliveready7\LaravelSes\Tests\Feature\FeatureTestCase;
+use andytan07\LaravelSesTracker\Models\SentEmail;
+use andytan07\LaravelSesTracker\Models\EmailComplaint;
+use andytan07\LaravelSesTracker\Tests\Feature\FeatureTestCase;
 
 class ComplaintTrackingTest extends FeatureTestCase
 {

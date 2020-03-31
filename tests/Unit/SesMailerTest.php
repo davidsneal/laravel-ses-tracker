@@ -1,11 +1,11 @@
 <?php
 
-namespace oliveready7\LaravelSes\Tests\Unit;
+namespace andytan07\LaravelSesTracker\Tests\Unit;
 
 use SesMail;
-use oliveready7\LaravelSes\Mocking\TestMailable;
-use oliveready7\LaravelSes\Exceptions\TooManyEmails;
-use oliveready7\LaravelSes\Models\SentEmail;
+use andytan07\LaravelSesTracker\Mocking\TestMailable;
+use andytan07\LaravelSesTracker\Exceptions\TooManyEmails;
+use andytan07\LaravelSesTracker\Models\SentEmail;
 
 class SesMailerTest extends UnitTestCase
 {

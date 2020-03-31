@@ -1,9 +1,9 @@
 <?php
-use oliveready7\LaravelSes\MailProcessor;
-use oliveready7\LaravelSes\Models\SentEmail;
-use oliveready7\LaravelSes\Models\EmailOpen;
-use oliveready7\LaravelSes\Models\EmailLink;
-use oliveready7\LaravelSes\Tests\Unit\UnitTestCase;
+use andytan07\LaravelSesTracker\MailProcessor;
+use andytan07\LaravelSesTracker\Models\SentEmail;
+use andytan07\LaravelSesTracker\Models\EmailOpen;
+use andytan07\LaravelSesTracker\Models\EmailLink;
+use andytan07\LaravelSesTracker\Tests\Unit\UnitTestCase;
 
 class MailProcessorTest extends UnitTestCase
 {

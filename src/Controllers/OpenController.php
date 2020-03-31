@@ -1,9 +1,9 @@
 <?php
 
-namespace oliveready7\LaravelSes\Controllers;
+namespace andytan07\LaravelSesTracker\Controllers;
 
 use Illuminate\Http\Request;
-use oliveready7\LaravelSes\Models\EmailOpen;
+use andytan07\LaravelSesTracker\Models\EmailOpen;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Routing\Controller;
 use Carbon\Carbon;

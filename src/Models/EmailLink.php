@@ -1,6 +1,6 @@
 <?php
 
-namespace oliveready7\LaravelSes\Models;
+namespace andytan07\LaravelSesTracker\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,7 @@ class EmailLink extends Model
 
     public function sentEmail()
     {
-        return $this->belongsTo('oliveready7\LaravelSes\Models\SentEmail');
+        return $this->belongsTo('andytan07\LaravelSesTracker\Models\SentEmail');
     }
 
     public function setClicked($clicked)

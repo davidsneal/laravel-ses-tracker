@@ -1,6 +1,6 @@
 <?php
 
-namespace oliveready7\LaravelSes;
+namespace andytan07\LaravelSesTracker;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Mail\MailServiceProvider;

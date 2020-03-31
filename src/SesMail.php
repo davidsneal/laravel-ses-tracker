@@ -1,11 +1,11 @@
 <?php
 
-namespace oliveready7\LaravelSes;
+namespace andytan07\LaravelSesTracker;
 
 use Illuminate\Support\Testing\Fakes\MailFake;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Container\Container;
-use oliveready7\LaravelSes\SesMailFake;
+use andytan07\LaravelSesTracker\SesMailFake;
 
 /**
  * @see \Illuminate\Mail\Mailer

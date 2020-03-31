@@ -1,9 +1,9 @@
 <?php
 
-namespace oliveready7\LaravelSes\Models;
+namespace andytan07\LaravelSesTracker\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use oliveready7\LaravelSes\Models\EmailLink;
+use andytan07\LaravelSesTracker\Models\EmailLink;
 
 class SentEmail extends Model
 {
@@ -19,22 +19,22 @@ class SentEmail extends Model
 
     public function emailOpen()
     {
-        return $this->hasOne('oliveready7\LaravelSes\Models\EmailOpen');
+        return $this->hasOne('andytan07\LaravelSesTracker\Models\EmailOpen');
     }
 
     public function emailLinks()
     {
-        return $this->hasMany('oliveready7\LaravelSes\Models\EmailLink');
+        return $this->hasMany('andytan07\LaravelSesTracker\Models\EmailLink');
     }
 
     public function emailBounce()
     {
-        return $this->hasOne('oliveready7\LaravelSes\Models\EmailBounce');
+        return $this->hasOne('andytan07\LaravelSesTracker\Models\EmailBounce');
     }
 
     public function emailComplaint()
     {
-        return $this->hasOne('oliveready7\LaravelSes\Models\EmailComplaint');
+        return $this->hasOne('andytan07\LaravelSesTracker\Models\EmailComplaint');
     }
 
     public static function numberSentForBatch($batchName)

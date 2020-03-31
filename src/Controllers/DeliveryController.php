@@ -1,9 +1,9 @@
 <?php
-namespace oliveready7\LaravelSes\Controllers;
+namespace andytan07\LaravelSesTracker\Controllers;
 
 use Illuminate\Http\Request;
 use Psr\Http\Message\ServerRequestInterface;
-use oliveready7\LaravelSes\Models\SentEmail;
+use andytan07\LaravelSesTracker\Models\SentEmail;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
 use GuzzleHttp\Client;

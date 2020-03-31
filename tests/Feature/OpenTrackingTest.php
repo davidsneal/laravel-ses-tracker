@@ -1,12 +1,12 @@
 <?php
 
-namespace oliveready7\LaravelSes\Tests\Feature;
+namespace andytan07\LaravelSesTracker\Tests\Feature;
 
 use SesMail;
-use oliveready7\LaravelSes\Models\SentEmail;
-use oliveready7\LaravelSes\Models\EmailOpen;
-use oliveready7\LaravelSes\Tests\Feature\FeatureTestCase;
-use oliveready7\LaravelSes\Mocking\TestMailable;
+use andytan07\LaravelSesTracker\Models\SentEmail;
+use andytan07\LaravelSesTracker\Models\EmailOpen;
+use andytan07\LaravelSesTracker\Tests\Feature\FeatureTestCase;
+use andytan07\LaravelSesTracker\Mocking\TestMailable;
 
 class OpenTrackingTest extends FeatureTestCase
 {
