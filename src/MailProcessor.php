@@ -25,23 +25,22 @@ class MailProcessor
         return $this->emailBody;
     }
 
-    private function setEmailBody($body)
+    private function setEmailBody($body): void
     {
         $this->emailBody = $body;
     }
 
-    private function setSentEmail(SentEmail $email)
+    private function setSentEmail(SentEmail $email): void
     {
         $this->sentEmail = $email;
     }
 
-    public function openTracking()
+    public function openTracking(): MailProcessor
     {
         $beaconIdentifier = Uuid::uuid4()->toString();
-        $beaconUrl = config('app.url') . "/laravel-ses/beacon/$beaconIdentifier";
+        $beaconUrl = rtrim(config('app.url'), '/') . "/laravel-ses/beacon/$beaconIdentifier";
 
-        EmailOpen::create
-        ([
+        EmailOpen::create([
             'sent_email_id' => $this->sentEmail->id,
             'email' => $this->sentEmail->email,
             'batch' => $this->sentEmail->batch,
@@ -49,39 +48,40 @@ class MailProcessor
             'url' => $beaconUrl,
         ]);
 
-        $this->setEmailBody($this->getEmailBody() . "<img src=\"$beaconUrl\"" . " alt=\"\" style=\"width:1px;height:1px;\"/>");
+        $this->setEmailBody($this->getEmailBody() . "<img src=\"$beaconUrl\"" . ' alt="" style="width:1px;height:1px;"/>');
         return $this;
     }
 
-    public function linkTracking()
+    public function linkTracking(): MailProcessor
     {
-        $url_expression = '/<a[^>]+href=([\'"])(?<href>.+?)\1[^>]*>/i';
-        preg_match_all($url_expression, $this->getEmailBody(), $result);
+        $dom = new Dom;
+        $dom->load($this->getEmailBody());
+        $anchors = $dom->find('a');
+        foreach ($anchors as $anchor) {
+            $originalUrl = $anchor->getAttribute('href');
 
-        foreach($result[2] as $originalUrl)
-        {
-            $this->createAppLink($originalUrl);
+            // set tracking url only if the anchor tag has href
+            if ($originalUrl) {
+                $anchor->setAttribute('href', $this->createAppLink($originalUrl));
+            }
         }
 
+        $this->setEmailBody($dom->innerHtml);
+
         return $this;
     }
 
-    private function createAppLink(string $originalUrl)
+    private function createAppLink(string $originalUrl): string
     {
         $linkIdentifier = Uuid::uuid4()->toString();
-        $linkUrl = "https://rapportstar.ml/laravel-ses/link/$linkIdentifier";
 
-        $link = EmailLink::create
-        ([
+        $link = EmailLink::create([
             'sent_email_id' => $this->sentEmail->id,
             'batch' => $this->sentEmail->batch,
             'link_identifier' => $linkIdentifier,
             'original_url' => $originalUrl
         ]);
 
-        $replaceUrl = str_replace($originalUrl, $linkUrl, $this->getEmailBody());
-        $this->setEmailBody($replaceUrl);
-
-        return $this;
+        return rtrim(config('app.url'), '/') . "/laravel-ses/link/$linkIdentifier";
     }
 }
