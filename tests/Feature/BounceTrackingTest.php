@@ -5,6 +5,7 @@ namespace andytan07\LaravelSesTracker\Tests\Feature;
 use andytan07\LaravelSesTracker\Models\SentEmail;
 use andytan07\LaravelSesTracker\Models\EmailBounce;
 use andytan07\LaravelSesTracker\Tests\Feature\FeatureTestCase;
+use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
 class BounceTrackingTest extends FeatureTestCase
 {
@@ -24,7 +25,7 @@ class BounceTrackingTest extends FeatureTestCase
         );
 
         //check bounce is logged correctly, note email Amazon returns is set as email rather than email set in sent email
-        $this->assertArraySubset([
+        Assert::assertArraySubset([
             'type' => 'Permanent',
             'message_id' => '84b8739d03d2245baed4999232916608@swift.generated',
             'sent_email_id' => 1,

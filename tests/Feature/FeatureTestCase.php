@@ -7,7 +7,7 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class FeatureTestCase extends OrchestraTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->artisan('migrate', ['--database' => 'testbench']);

@@ -6,10 +6,11 @@ use andytan07\LaravelSesTracker\Models\SentEmail;
 use andytan07\LaravelSesTracker\Models\EmailLink;
 use andytan07\LaravelSesTracker\Tests\Feature\FeatureTestCase;
 use Ramsey\Uuid\Uuid;
+use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
 class ClickTrackingTest extends FeatureTestCase
 {
-    public function testEmailLinksCanBeTracked()
+    public function testEmailLinksCanBeTracked(): void
     {
         $linkId = Uuid::uuid4()->toString();
 
@@ -24,14 +25,14 @@ class ClickTrackingTest extends FeatureTestCase
 
         $this->assertEquals('https://redirect.com', $res->getTargetUrl());
 
-        $this->assertArraySubset([
+        Assert::assertArraySubset([
             'clicked' => true,
             'click_count' => 1
         ], EmailLink::first()->toArray());
 
         $this->get("https://laravel-ses.com/laravel-ses/link/$linkId");
 
-        $this->assertArraySubset([
+        Assert::assertArraySubset([
             'clicked' => true,
             'click_count' => 2
         ], EmailLink::first()->toArray());

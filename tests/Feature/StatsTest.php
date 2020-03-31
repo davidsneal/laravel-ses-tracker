@@ -9,11 +9,12 @@ use andytan07\LaravelSesTracker\Models\EmailOpen;
 use andytan07\LaravelSesTracker\Models\EmailLink;
 use andytan07\LaravelSesTracker\Models\EmailComplaint;
 use andytan07\LaravelSesTracker\Mocking\TestMailable;
+use DMS\PHPUnitExtensions\ArraySubset\Assert;
 use Illuminate\Database\Eloquent\Collection;
 
 class StatsTest extends FeatureTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -250,7 +251,7 @@ class StatsTest extends FeatureTestCase
         }
 
         //make sure all stats are 0 apart from sent emails
-        $this->assertArraySubset([
+        Assert::assertArraySubset([
             "send_count" => 8,
             "deliveries" => 0,
             "opens" => 0,

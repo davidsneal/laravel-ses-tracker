@@ -8,6 +8,7 @@ use andytan07\LaravelSesTracker\Models\SentEmail;
 use andytan07\LaravelSesTracker\Models\EmailOpen;
 use andytan07\LaravelSesTracker\Models\EmailLink;
 use andytan07\LaravelSesTracker\Mocking\TestMailable;
+use DMS\PHPUnitExtensions\ArraySubset\Assert;
 use Illuminate\Database\Eloquent\Collection;
 
 class BatchEmailTest extends FeatureTestCase
@@ -35,7 +36,7 @@ class BatchEmailTest extends FeatureTestCase
         }
 
         //make sure all stats are 0 apart from sent emails
-        $this->assertArraySubset([
+        Assert::assertArraySubset([
             "send_count" => 8,
             "deliveries" => 0,
             "opens" => 0,
@@ -113,7 +114,7 @@ class BatchEmailTest extends FeatureTestCase
 
         //check that stats are now correct, click throughs = amount of users that clicked at least one link
         //link popularity is amount of unique clicks on a link in the email body, ordered by most popular
-        $this->assertArraySubset([
+        Assert::assertArraySubset([
             "send_count" => 8,
             "deliveries" => 7,
             "opens" => 4,
@@ -131,8 +132,7 @@ class BatchEmailTest extends FeatureTestCase
         ], SesMail::statsForBatch('welcome_emails'));
 
         //check stats can be gotten with Facade as well
-
-        $this->assertArraySubset([
+        Assert::assertArraySubset([
             "send_count" => 8,
             "deliveries" => 7,
             "opens" => 4,
