@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmailLink extends Model
 {
-    protected $table = 'laravel_ses_email_links';
+    protected $table = 'laravel_ses_tracker_email_links';
 
     protected $guarded = [];
 
     public function sentEmail()
     {
-        return $this->belongsTo('andytan07\LaravelSesTracker\Models\SentEmail');
+        return $this->belongsTo(SentEmail::class);
     }
 
     public function setClicked($clicked)

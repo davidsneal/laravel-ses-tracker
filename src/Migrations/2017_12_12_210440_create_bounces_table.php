@@ -13,7 +13,7 @@ class CreateBouncesTable extends Migration
      */
     public function up()
     {
-        Schema::create('laravel_ses_email_bounces', function (Blueprint $table) {
+        Schema::create('laravel_ses_tracker_email_bounces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('message_id');
             $table->unsignedInteger('sent_email_id');
@@ -31,6 +31,6 @@ class CreateBouncesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laravel_ses_email_bounces');
+        Schema::dropIfExists('laravel_ses_tracker_email_bounces');
     }
 }

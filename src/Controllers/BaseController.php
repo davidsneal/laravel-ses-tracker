@@ -12,7 +12,7 @@ class BaseController extends Controller
 {
     public function validateSns(ServerRequestInterface $request)
     {
-        if (config('laravelses.aws_sns_validator')) {
+        if (config('laravel-ses-tracker.aws_sns_validator')) {
             $message = Message::fromPsrRequest($request);
             $validator = new MessageValidator();
             try {

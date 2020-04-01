@@ -21,6 +21,6 @@ class OpenController extends BaseController
         $open->opened_at = Carbon::now();
         $open->save();
 
-        return redirect(config('app.url')."/laravel-ses/to.png");
+        return redirect(config('app.url'). '/laravel-ses/to.png');
     }
 }

@@ -2,7 +2,7 @@
 namespace andytan07\LaravelSesTracker\Tests\Unit;
 
 use andytan07\LaravelSesTracker\SesMail;
-use andytan07\LaravelSesTracker\LaravelSesServiceProvider;
+use andytan07\LaravelSesTracker\LaravelSesTrackerServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class UnitTestCase extends OrchestraTestCase
@@ -19,7 +19,7 @@ class UnitTestCase extends OrchestraTestCase
      */
     protected function getPackageProviders($app)
     {
-        return [LaravelSesServiceProvider::class];
+        return [LaravelSesTrackerServiceProvider::class];
     }
     /**
      * Load package alias

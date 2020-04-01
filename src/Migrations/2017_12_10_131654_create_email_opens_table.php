@@ -13,7 +13,7 @@ class CreateEmailOpensTable extends Migration
      */
     public function up()
     {
-        Schema::create('laravel_ses_email_opens', function (Blueprint $table) {
+        Schema::create('laravel_ses_tracker_email_opens', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sent_email_id');
             $table->string('email');
@@ -32,6 +32,6 @@ class CreateEmailOpensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laravel_ses_email_opens');
+        Schema::dropIfExists('laravel_ses_tracker_email_opens');
     }
 }

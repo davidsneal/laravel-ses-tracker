@@ -1,6 +1,7 @@
 <?php
 namespace andytan07\LaravelSesTracker\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Psr\Http\Message\ServerRequestInterface;
 use andytan07\LaravelSesTracker\Models\SentEmail;
@@ -49,8 +50,7 @@ class ComplaintController extends BaseController
             ->commonHeaders
             ->messageId;
 
-        $messageId  = str_replace('<', '', $messageId);
-        $messageId = str_replace('>', '', $messageId);
+        $messageId = str_replace(array('<', '>'), '', $messageId);
 
         try {
             $sentEmail = SentEmail::whereMessageId($messageId)

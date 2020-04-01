@@ -13,7 +13,7 @@ class CreateSentEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('laravel_ses_sent_emails', function (Blueprint $table) {
+        Schema::create('laravel_ses_tracker_sent_emails', function (Blueprint $table) {
             $table->increments('id');
             $table->string('message_id');
             $table->string('email');
@@ -35,6 +35,6 @@ class CreateSentEmailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laravel_ses_sent_emails');
+        Schema::dropIfExists('laravel_ses_tracker_sent_emails');
     }
 }

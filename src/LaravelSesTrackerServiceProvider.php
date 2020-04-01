@@ -7,7 +7,7 @@ use Illuminate\Mail\MailServiceProvider;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
-class LaravelSesServiceProvider extends ServiceProvider
+class LaravelSesTrackerServiceProvider extends ServiceProvider
 {
 
     /**
@@ -25,7 +25,7 @@ class LaravelSesServiceProvider extends ServiceProvider
         ], 'public');
 
         $this->publishes([
-            __DIR__.'/Config/laravelses.php' => config_path('laravelses.php')
+            __DIR__.'/Config/laravel-ses-tracker.php' => config_path('laravel-ses-tracker.php')
         ], 'config');
 
 
@@ -44,8 +44,8 @@ class LaravelSesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-           __DIR__.'/Config/laravelses.php',
-            'laravelses'
+           __DIR__.'/Config/laravel-ses-tracker.php',
+            'laravel-ses-tracker'
        );
 
         $this->registerIlluminateMailer();

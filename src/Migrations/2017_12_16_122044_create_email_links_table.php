@@ -13,7 +13,7 @@ class CreateEmailLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('laravel_ses_email_links', function (Blueprint $table) {
+        Schema::create('laravel_ses_tracker_email_links', function (Blueprint $table) {
             $table->increments('id');
             $table->uuid('link_identifier');
             $table->integer('sent_email_id');
@@ -32,6 +32,6 @@ class CreateEmailLinksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laravel_ses_email_links');
+        Schema::dropIfExists('laravel_ses_tracker_email_links');
     }
 }

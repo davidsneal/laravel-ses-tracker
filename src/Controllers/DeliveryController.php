@@ -31,8 +31,7 @@ class DeliveryController extends BaseController
             ->commonHeaders
             ->messageId;
 
-        $messageId  = str_replace('<', '', $messageId);
-        $messageId = str_replace('>', '', $messageId);
+        $messageId = str_replace(array('<', '>'), '', $messageId);
 
         $deliveryTime =  Carbon::parse($message->delivery
             ->timestamp);

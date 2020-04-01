@@ -59,7 +59,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "andytan07\\LaravelSesTracker\\LaravelSesServiceProvider"
+                "andytan07\\LaravelSesTracker\\LaravelSesTrackerServiceProvider"
             ],
             "aliases": {
                 "SesMail": "andytan07\\LaravelSesTracker\\SesMail"

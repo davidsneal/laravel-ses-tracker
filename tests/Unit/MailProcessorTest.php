@@ -1,9 +1,11 @@
 <?php
+
 use andytan07\LaravelSesTracker\MailProcessor;
 use andytan07\LaravelSesTracker\Models\SentEmail;
 use andytan07\LaravelSesTracker\Models\EmailOpen;
 use andytan07\LaravelSesTracker\Models\EmailLink;
 use andytan07\LaravelSesTracker\Tests\Unit\UnitTestCase;
+use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
 class MailProcessorTest extends UnitTestCase
 {
@@ -78,7 +80,7 @@ class MailProcessorTest extends UnitTestCase
         );
 
         //make sure email link data is correct
-        $this->assertArraySubset([
+        Assert::assertArraySubset([
             'original_url' => 'https://click.me',
             'sent_email_id' => 1
         ], EmailLink::first()->toArray());

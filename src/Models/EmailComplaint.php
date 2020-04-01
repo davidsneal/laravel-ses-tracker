@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmailComplaint extends Model
 {
-    protected $table = 'laravel_ses_email_complaints';
+    protected $table = 'laravel_ses_tracker_email_complaints';
 
     protected $guarded = [];
 }

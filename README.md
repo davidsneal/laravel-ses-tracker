@@ -1,11 +1,11 @@
-# laravel-ses
-A Laravel 5.5+ Package that allows you to get simple sending statistics for emails you send through SES, including deliveries, opens, bounces, complaints and link tracking.
+# laravel-ses-tracker
+A Laravel 6.0+ Package that allows you to get simple sending statistics for emails you send through SES, including deliveries, opens, bounces, complaints and link tracking.
 
 Install via composer
 
 Add to composer.json
 ```
-composer require oliveready7/laravel-ses
+composer require andytan07/laravel-ses-tracker
 ```
 Make sure your app/config/services.php has SES values set
 
@@ -35,7 +35,7 @@ Migrate the package's database tables
 php artisan migrate
 ```
 
-Optionally you can publish the package's config (laravelses.php)
+Optionally you can publish the package's config (laravel-ses-tracker.php)
 
 ```
 php artisan vendor:publish --tag=config

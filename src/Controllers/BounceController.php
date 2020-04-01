@@ -51,8 +51,7 @@ class BounceController extends BaseController
             ->commonHeaders
             ->messageId;
 
-        $messageId  = str_replace('<', '', $messageId);
-        $messageId = str_replace('>', '', $messageId);
+        $messageId = str_replace(array('<', '>'), '', $messageId);
 
         try {
             $sentEmail = SentEmail::whereMessageId($messageId)
