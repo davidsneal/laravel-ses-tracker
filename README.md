@@ -1,7 +1,20 @@
 # laravel-ses-tracker
 A Laravel 6.0+ Package that allows you to get simple sending statistics for emails you send through SES, including deliveries, opens, bounces, complaints and link tracking.
 
-Install via composer
+> This is a revamped version of [oliveready7/laravel-ses](https://github.com/oliveready7/laravel-ses) package, updated to support Laravel v6.0+ and some bug fixes.
+Primarily I revamped this package so it's suitable to be used in my company project with Laravel v6.0+.
+
+Here are the differences between original package and this package:
+1. All the namespace are changed to `andytan07/LaravelSesTracker`
+2. Service provider is now `LaravelSesTrackerServiceProvider`
+3. All the tables name are prefixed with `laravel_ses_tracker` instead of `laravel_ses`
+4. New unsubscribe column in `laravel_ses_tracker_sent_emails` (TODO)
+5. Config file is now `config/laravel-ses-tracker.php` instead of `config/laravelses.php`
+6. Routes are unchanged, they are still prefixed with `/laravel-ses`
+
+Apart from the above listed differences, there are not much more difference between this package and oliveready7's package.
+
+## Install via composer
 
 Add to composer.json
 ```
