@@ -1,10 +1,10 @@
 <?php
 
-namespace andytan07\LaravelSesTracker\Tests\Feature;
+namespace DavidNeal\LaravelSesTracker\Tests\Feature;
 
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\Models\EmailLink;
-use andytan07\LaravelSesTracker\Tests\Feature\FeatureTestCase;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Models\EmailLink;
+use DavidNeal\LaravelSesTracker\Tests\Feature\FeatureTestCase;
 use Ramsey\Uuid\Uuid;
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
 

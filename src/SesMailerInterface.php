@@ -1,8 +1,8 @@
 <?php
 
-namespace andytan07\LaravelSesTracker;
+namespace DavidNeal\LaravelSesTracker;
 
-use andytan07\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
 
 interface SesMailerInterface
 {

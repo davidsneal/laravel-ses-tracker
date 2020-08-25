@@ -1,6 +1,6 @@
 <?php
 
-namespace andytan07\LaravelSesTracker;
+namespace DavidNeal\LaravelSesTracker;
 
 use Illuminate\Console\Command;
 

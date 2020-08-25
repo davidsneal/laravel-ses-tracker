@@ -1,11 +1,11 @@
 <?php
 
-namespace andytan07\LaravelSesTracker;
+namespace DavidNeal\LaravelSesTracker;
 
 use Ramsey\Uuid\Uuid;
-use andytan07\LaravelSesTracker\Models\EmailOpen;
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\Models\EmailLink;
+use DavidNeal\LaravelSesTracker\Models\EmailOpen;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Models\EmailLink;
 use PHPHtmlParser\Dom;
 
 class MailProcessor

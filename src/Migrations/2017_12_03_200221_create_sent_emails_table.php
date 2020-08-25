@@ -14,7 +14,7 @@ class CreateSentEmailsTable extends Migration
     public function up()
     {
         Schema::create('laravel_ses_tracker_sent_emails', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('message_id');
             $table->string('email');
             $table->string('batch')->nullable();

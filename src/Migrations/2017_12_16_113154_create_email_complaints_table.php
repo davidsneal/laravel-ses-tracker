@@ -14,9 +14,9 @@ class CreateEmailComplaintsTable extends Migration
     public function up()
     {
         Schema::create('laravel_ses_tracker_email_complaints', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('message_id');
-            $table->unsignedInteger('sent_email_id');
+            $table->unsignedBigInteger('sent_email_id');
             $table->string('type');
             $table->string('email');
             $table->dateTime('complained_at');

@@ -1,9 +1,9 @@
 <?php
 
-namespace andytan07\LaravelSesTracker\Tests\Feature;
+namespace DavidNeal\LaravelSesTracker\Tests\Feature;
 
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\Tests\Feature\FeatureTestCase;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Tests\Feature\FeatureTestCase;
 
 class DeliveryTrackingTest extends FeatureTestCase
 {

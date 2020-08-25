@@ -1,10 +1,9 @@
 <?php
-namespace andytan07\LaravelSesTracker\Controllers;
+namespace DavidNeal\LaravelSesTracker\Controllers;
 
-use Illuminate\Http\Request;
 use Psr\Http\Message\ServerRequestInterface;
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\Models\EmailBounce;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Models\EmailBounce;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -36,8 +35,8 @@ class BounceController extends BaseController
 
         $result = json_decode(request()->getContent());
 
-        //if amazon is trying to confirm the subscription
-        if (isset($result->Type) && $result->Type == 'SubscriptionConfirmation') {
+        // if amazon is trying to confirm the subscription
+        if (isset($result->Type) && $result->Type === 'SubscriptionConfirmation') {
             $client = new Client;
             $client->get($result->SubscribeURL);
 
@@ -57,6 +56,7 @@ class BounceController extends BaseController
             $sentEmail = SentEmail::whereMessageId($messageId)
                 ->whereBounceTracking(true)
                 ->firstOrFail();
+
             EmailBounce::create([
                 'message_id' => $messageId,
                 'sent_email_id' => $sentEmail->id,
@@ -65,7 +65,7 @@ class BounceController extends BaseController
                 'bounced_at' => Carbon::parse($message->mail->timestamp)
             ]);
         } catch (ModelNotFoundException $e) {
-            //bounce won't be logged if this is hit
+            // bounce won't be logged if this is hit
         }
     }
 }

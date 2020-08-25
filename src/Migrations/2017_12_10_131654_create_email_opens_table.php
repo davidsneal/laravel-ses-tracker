@@ -14,8 +14,8 @@ class CreateEmailOpensTable extends Migration
     public function up()
     {
         Schema::create('laravel_ses_tracker_email_opens', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('sent_email_id');
+            $table->id();
+            $table->unsignedBigInteger('sent_email_id')->index();
             $table->string('email');
             $table->string('batch')->nullable();
             $table->uuid('beacon_identifier');

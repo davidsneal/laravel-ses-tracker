@@ -1,14 +1,13 @@
 <?php
 
-namespace andytan07\LaravelSesTracker;
+namespace DavidNeal\LaravelSesTracker;
 
 use Illuminate\Mail\Mailer;
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\SesMailerInterface;
-use Carbon\Carbon;
-use andytan07\LaravelSesTracker\TrackingTrait;
-use andytan07\LaravelSesTracker\Services\Stats;
-use andytan07\LaravelSesTracker\Exceptions\TooManyEmails;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\SesMailerInterface;
+use DavidNeal\LaravelSesTracker\TrackingTrait;
+use DavidNeal\LaravelSesTracker\Services\Stats;
+use DavidNeal\LaravelSesTracker\Exceptions\TooManyEmails;
 
 class SesMailer extends Mailer implements SesMailerInterface
 {
@@ -35,7 +34,7 @@ class SesMailer extends Mailer implements SesMailerInterface
             'message_id' => $message->getId(),
             'email' => key($message->getTo()),
             'batch' => $this->getBatch(),
-            'sent_at' => Carbon::now(),
+            'sent_at' => now(),
             'delivery_tracking' => $this->deliveryTracking,
             'complaint_tracking' => $this->complaintTracking,
             'bounce_tracking' => $this->bounceTracking

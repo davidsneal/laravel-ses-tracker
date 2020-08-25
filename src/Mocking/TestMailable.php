@@ -1,6 +1,6 @@
 <?php
 
-namespace andytan07\LaravelSesTracker\Mocking;
+namespace DavidNeal\LaravelSesTracker\Mocking;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -11,7 +11,7 @@ class TestMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $test = 'replace with some junk';
+    public $test = 'Just some test text';
 
     /**
      * Create a new message instance.
@@ -31,7 +31,7 @@ class TestMailable extends Mailable
     public function build()
     {
         return $this
-            ->from('test@oliveready.com')
+            ->from('test@example.com')
             ->view('LaravelSes::test');
     }
 }

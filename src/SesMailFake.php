@@ -1,18 +1,17 @@
 <?php
 
-namespace andytan07\LaravelSesTracker;
+namespace DavidNeal\LaravelSesTracker;
 
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Mail\Mailable;
 use PHPUnit\Framework\Assert as PHPUnit;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use andytan07\LaravelSesTracker\SesMailerInterface;
-use andytan07\LaravelSesTracker\TrackingTrait;
+use DavidNeal\LaravelSesTracker\SesMailerInterface;
+use DavidNeal\LaravelSesTracker\TrackingTrait;
 use Illuminate\Support\Testing\Fakes\PendingMailFake;
-use Carbon\Carbon;
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\Services\Stats;
-use andytan07\LaravelSesTracker\Exceptions\TooManyEmails;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Services\Stats;
+use DavidNeal\LaravelSesTracker\Exceptions\TooManyEmails;
 
 class SesMailFake implements SesMailerInterface, Mailer
 {
@@ -30,7 +29,7 @@ class SesMailFake implements SesMailerInterface, Mailer
             'message_id' => rand(1, 999999),
             'email' => $view->to[0]['address'],
             'batch' => $this->getBatch(),
-            'sent_at' => Carbon::now(),
+            'sent_at' => now(),
             'delivery_tracking' => $this->deliveryTracking,
             'complaint_tracking' => $this->complaintTracking,
             'bounce_tracking' => $this->bounceTracking

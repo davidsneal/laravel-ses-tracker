@@ -1,6 +1,6 @@
 <?php
 
-namespace andytan07\LaravelSesTracker\Models;
+namespace DavidNeal\LaravelSesTracker\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

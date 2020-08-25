@@ -1,9 +1,9 @@
 <?php
 
-namespace andytan07\LaravelSesTracker\Tests\Unit;
+namespace DavidNeal\LaravelSesTracker\Tests\Unit;
 
-use andytan07\LaravelSesTracker\Models\EmailBounce;
-use andytan07\LaravelSesTracker\Models\EmailComplaint;
+use DavidNeal\LaravelSesTracker\Models\EmailBounce;
+use DavidNeal\LaravelSesTracker\Models\EmailComplaint;
 
 class EmailQueriesTest extends UnitTestCase
 {

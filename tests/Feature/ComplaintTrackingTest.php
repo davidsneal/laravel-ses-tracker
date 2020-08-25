@@ -1,10 +1,10 @@
 <?php
 
-namespace andytan07\LaravelSesTracker\Tests\Feature;
+namespace DavidNeal\LaravelSesTracker\Tests\Feature;
 
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\Models\EmailComplaint;
-use andytan07\LaravelSesTracker\Tests\Feature\FeatureTestCase;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Models\EmailComplaint;
+use DavidNeal\LaravelSesTracker\Tests\Feature\FeatureTestCase;
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
 class ComplaintTrackingTest extends FeatureTestCase

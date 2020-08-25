@@ -1,5 +1,5 @@
 {
-    "name": "andytan07/laravel-ses-tracker",
+    "name": "davidneal/laravel-ses-tracker",
     "description": "Allows you to track opens, deliveries, bounces, complaints and clicked links when sending emails through Laravel and Amazon SES",
     "type": "library",
     "license": "MIT",
@@ -20,19 +20,15 @@
         {
             "name": "Andy Tan",
             "email": "andytan0727@gmail.com"
+        },
+        {
+            "name": "David Neal",
+            "email": "davidstephenneal@gmail.com"
         }
     ],
     "require": {
-        "php":  "^7.2",
-        "illuminate/support": "^6.0",
-        "illuminate/console": "^6.0",
-        "illuminate/mail": "^6.0",
-        "illuminate/database": "^6.0",
-        "illuminate/container": "^6.0",
-        "illuminate/routing": "^6.0",
-        "aws/aws-sdk-php": "^3.28",
-        "ramsey/uuid": "^3.7",
-        "nesbot/carbon": "^2.0",
+        "php": "^7.2.5",
+        "aws/aws-sdk-php": "^3.148",
         "guzzlehttp/guzzle": "~6.0",
         "paquettg/php-html-parser": "^2.2",
         "aws/aws-php-sns-message-validator": "^1.4",
@@ -48,21 +44,21 @@
     },
     "autoload": {
         "psr-4": {
-            "andytan07\\LaravelSesTracker\\": "src/"
+            "DavidNeal\\LaravelSesTracker\\": "src/"
         }
     },
     "autoload-dev": {
        "psr-4": {
-           "andytan07\\LaravelSesTracker\\Tests\\": "tests/"
+           "DavidNeal\\LaravelSesTracker\\Tests\\": "tests/"
        }
    },
     "extra": {
         "laravel": {
             "providers": [
-                "andytan07\\LaravelSesTracker\\LaravelSesTrackerServiceProvider"
+                "DavidNeal\\LaravelSesTracker\\LaravelSesTrackerServiceProvider"
             ],
             "aliases": {
-                "SesMail": "andytan07\\LaravelSesTracker\\SesMail"
+                "SesMail": "DavidNeal\\LaravelSesTracker\\SesMail"
             }
         }
     },

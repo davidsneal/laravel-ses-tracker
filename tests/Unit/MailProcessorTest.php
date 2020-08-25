@@ -1,10 +1,10 @@
 <?php
 
-use andytan07\LaravelSesTracker\MailProcessor;
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\Models\EmailOpen;
-use andytan07\LaravelSesTracker\Models\EmailLink;
-use andytan07\LaravelSesTracker\Tests\Unit\UnitTestCase;
+use DavidNeal\LaravelSesTracker\MailProcessor;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Models\EmailOpen;
+use DavidNeal\LaravelSesTracker\Models\EmailLink;
+use DavidNeal\LaravelSesTracker\Tests\Unit\UnitTestCase;
 use DMS\PHPUnitExtensions\ArraySubset\Assert;
 
 class MailProcessorTest extends UnitTestCase

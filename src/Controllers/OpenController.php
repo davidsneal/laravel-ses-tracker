@@ -1,12 +1,9 @@
 <?php
 
-namespace andytan07\LaravelSesTracker\Controllers;
+namespace DavidNeal\LaravelSesTracker\Controllers;
 
-use Illuminate\Http\Request;
-use andytan07\LaravelSesTracker\Models\EmailOpen;
+use DavidNeal\LaravelSesTracker\Models\EmailOpen;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Routing\Controller;
-use Carbon\Carbon;
 
 class OpenController extends BaseController
 {
@@ -18,7 +15,7 @@ class OpenController extends BaseController
             return response()->json(['success' => false, 'errors' => ['Invalid Beacon']], 422);
         }
 
-        $open->opened_at = Carbon::now();
+        $open->opened_at = now();
         $open->save();
 
         return redirect(config('app.url'). '/laravel-ses/to.png');

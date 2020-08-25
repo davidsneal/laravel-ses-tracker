@@ -1,6 +1,6 @@
 <?php
 
-namespace andytan07\LaravelSesTracker\Controllers;
+namespace DavidNeal\LaravelSesTracker\Controllers;
 
 use Illuminate\Routing\Controller;
 use SesMail;

@@ -5,7 +5,7 @@ A Laravel 6.0+ Package that allows you to get simple sending statistics for emai
 Primarily I revamped this package so it's suitable to be used in my company project with Laravel v6.0+.
 
 Here are the differences between original package and this package:
-1. All the namespace are changed to `andytan07/LaravelSesTracker`
+1. All the namespace are changed to `DavidNeal/LaravelSesTracker`
 2. Service provider is now `LaravelSesTrackerServiceProvider`
 3. All the tables name are prefixed with `laravel_ses_tracker` instead of `laravel_ses`
 4. New unsubscribe column in `laravel_ses_tracker_sent_emails` (TODO)
@@ -18,7 +18,7 @@ Apart from the above listed differences, there are not much more difference betw
 
 Add to composer.json
 ```
-composer require andytan07/laravel-ses-tracker
+composer require davidneal/laravel-ses-tracker
 ```
 Make sure your app/config/services.php has SES values set
 

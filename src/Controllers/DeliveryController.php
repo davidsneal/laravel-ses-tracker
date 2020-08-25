@@ -1,9 +1,8 @@
 <?php
-namespace andytan07\LaravelSesTracker\Controllers;
+namespace DavidNeal\LaravelSesTracker\Controllers;
 
-use Illuminate\Http\Request;
 use Psr\Http\Message\ServerRequestInterface;
-use andytan07\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -16,7 +15,7 @@ class DeliveryController extends BaseController
 
         $result = json_decode(request()->getContent());
 
-        //if amazon is trying to confirm the subscription
+        // if amazon is trying to confirm the subscription
         if (isset($result->Type) && $result->Type == 'SubscriptionConfirmation') {
             $client = new Client;
             $client->get($result->SubscribeURL);
@@ -42,7 +41,7 @@ class DeliveryController extends BaseController
                 ->firstOrFail();
             $sentEmail->setDeliveredAt($deliveryTime);
         } catch (ModelNotFoundException $e) {
-            //delivery won't be logged if this hits
+            // delivery won't be logged if this hits
         }
     }
 }

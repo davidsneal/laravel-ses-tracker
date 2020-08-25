@@ -1,8 +1,8 @@
 <?php
-namespace andytan07\LaravelSesTracker\Tests\Feature;
+namespace DavidNeal\LaravelSesTracker\Tests\Feature;
 
-use andytan07\LaravelSesTracker\SesMail;
-use andytan07\LaravelSesTracker\LaravelSesTrackerServiceProvider;
+use DavidNeal\LaravelSesTracker\SesMail;
+use DavidNeal\LaravelSesTracker\LaravelSesTrackerServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class FeatureTestCase extends OrchestraTestCase

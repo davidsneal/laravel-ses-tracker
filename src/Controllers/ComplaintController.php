@@ -1,11 +1,11 @@
 <?php
-namespace andytan07\LaravelSesTracker\Controllers;
+namespace DavidNeal\LaravelSesTracker\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Psr\Http\Message\ServerRequestInterface;
-use andytan07\LaravelSesTracker\Models\SentEmail;
-use andytan07\LaravelSesTracker\Models\EmailComplaint;
+use DavidNeal\LaravelSesTracker\Models\SentEmail;
+use DavidNeal\LaravelSesTracker\Models\EmailComplaint;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 
@@ -35,7 +35,7 @@ class ComplaintController extends BaseController
 
         $result = json_decode(request()->getContent());
 
-        //if amazon is trying to confirm the subscription
+        // if amazon is trying to confirm the subscription
         if (isset($result->Type) && $result->Type == 'SubscriptionConfirmation') {
             $client = new Client;
             $client->get($result->SubscribeURL);
@@ -65,6 +65,7 @@ class ComplaintController extends BaseController
                 'complained_at' =>  Carbon::parse($message->mail->timestamp)
             ]);
         } catch (ModelNotFoundException $e) {
+            // complaint not logged
         }
     }
 }
