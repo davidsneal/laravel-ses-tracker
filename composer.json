@@ -32,7 +32,6 @@
         "guzzlehttp/guzzle": "~6.0",
         "paquettg/php-html-parser": "^2.2",
         "aws/aws-php-sns-message-validator": "^1.4",
-        "symfony/psr-http-message-bridge": "^1.0",
         "laminas/laminas-diactoros": "^2.2"
     },
     "require-dev": {
