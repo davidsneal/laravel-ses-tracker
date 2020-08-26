@@ -64,13 +64,14 @@ class Stats
 
         return [
             'data' => $stats,
-            'percentage_sent' => (int) number_format((count($stats) / $total) * 100, 0),
+            'percentage_sent' => (int) number_format(($stats->count() / $total) * 100, 0),
             'counts' => [
                 'sent' => $stats->count(),
                 'delivered' => $stats->where('delivered', true)->count(),
                 'opened' => $stats->where('opened', true)->count(),
                 'bounced' => $stats->where('bounced', true)->count(),
                 'complained' => $stats->where('complained', true)->count(),
+                'sending' => $stats->where('status', 'sending')->count(),
             ],
             'clicks' => SentEmail::getNumberOfUsersThatClickedAtLeastOneLink($emailId),
             'link_popularity' => SentEmail::getLinkPopularityOrder($emailId)
