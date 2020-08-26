@@ -12,6 +12,8 @@ interface SesMailerInterface
     public function setupTracking($setupTracking, SentEmail $sentEmail);
     public function setEmailId($id);
     public function getEmailId();
+    public function setContactId($id);
+    public function getContactId();
     public function enableOpenTracking();
     public function enableLinkTracking();
     public function enableBounceTracking();

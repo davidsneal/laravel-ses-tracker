@@ -39,11 +39,12 @@ class SentEmail extends Model
 
     public static function getStats($emailId)
     {
-        return self::select('sent_emails.email')
+        return self::select('sent_emails.email', 'sent_emails.contact_id', 'contacts.first_name', 'contacts.last_name')
             ->selectRaw('CASE WHEN (sent_emails.delivered_at IS NULL) THEN 0 ELSE 1 END as delivered')
             ->selectRaw(self::prepRawSelect('opens', 'opened'))
             ->selectRaw(self::prepRawSelect('bounces', 'bounced'))
             ->selectRaw(self::prepRawSelect('complaints', 'complained'))
+            ->join('contacts', 'sent_emails.contact_id', '=', 'contacts.id')
             ->where('sent_emails.email_id', $emailId)
             ->groupBy('sent_emails.id')
             ->get();

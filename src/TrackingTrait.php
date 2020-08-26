@@ -40,6 +40,17 @@ trait TrackingTrait
         return $this->email_id;
     }
 
+    public function setContactId($id)
+    {
+        $this->contact_id = $id;
+        return $this;
+    }
+
+    public function getContactId()
+    {
+        return $this->contact_id;
+    }
+
     public function enableOpenTracking()
     {
         $this->openTracking = true;

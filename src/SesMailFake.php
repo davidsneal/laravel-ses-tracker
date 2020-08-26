@@ -29,6 +29,7 @@ class SesMailFake implements SesMailerInterface, Mailer
             'message_id' => rand(1, 999999),
             'email' => $view->to[0]['address'],
             'email_id' => $this->getEmailId(),
+            'contact_id' => $this->getContactId(),
             'sent_at' => now(),
             'delivery_tracking' => $this->deliveryTracking,
             'complaint_tracking' => $this->complaintTracking,

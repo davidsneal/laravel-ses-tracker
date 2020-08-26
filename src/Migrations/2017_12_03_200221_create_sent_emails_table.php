@@ -18,6 +18,7 @@ class CreateSentEmailsTable extends Migration
             $table->string('message_id');
             $table->string('email');
             $table->unsignedBigInteger('email_id')->nullable()->index();
+            $table->unsignedBigInteger('contact_id')->nullable()->index();
             $table->dateTime('sent_at')->nullable();
             $table->dateTime('delivered_at')->nullable();
             $table->boolean('unsubscribe')->default(false);
