@@ -50,13 +50,18 @@ class Stats
 
     public static function statsForBatch($emailId)
     {
+        $stats = SentEmail::getStats($emailId);
+
         return [
-            'send_count' => SentEmail::numberSentForBatch($emailId),
-            'deliveries' => SentEmail::deliveriesForBatch($emailId),
-            'opens' => SentEmail::opensForBatch($emailId),
-            'bounces' => SentEmail::bouncesForBatch($emailId),
-            'complaints' => SentEmail::complaintsForBatch($emailId),
-            'click_throughs' => SentEmail::getNumberOfUsersThatClickedAtLeastOneLink($emailId),
+            'data' => $stats,
+            'counts' => [
+                'sent' => $stats->count(),
+                'delivered' => $stats->where('delivered', true)->count(),
+                'opened' => $stats->where('opened', true)->count(),
+                'bounced' => $stats->where('bounced', true)->count(),
+                'complained' => $stats->where('complained', true)->count(),
+            ],
+            'clicks' => SentEmail::getNumberOfUsersThatClickedAtLeastOneLink($emailId),
             'link_popularity' => SentEmail::getLinkPopularityOrder($emailId)
         ];
     }

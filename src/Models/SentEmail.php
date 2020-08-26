@@ -37,6 +37,23 @@ class SentEmail extends Model
         return $this->hasOne(EmailComplaint::class);
     }
 
+    public static function getStats($emailId)
+    {
+        return self::select('sent_emails.email')
+            ->selectRaw('CASE WHEN (sent_emails.delivered_at IS NULL) THEN 0 ELSE 1 END as delivered')
+            ->selectRaw(self::prepRawSelect('opens', 'opened'))
+            ->selectRaw(self::prepRawSelect('bounces', 'bounced'))
+            ->selectRaw(self::prepRawSelect('complaints', 'complained'))
+            ->where('sent_emails.email_id', $emailId)
+            ->groupBy('sent_emails.id')
+            ->get();
+    }
+
+    private static function prepRawSelect(string $suffix, string $key): string
+    {
+        return '(CASE WHEN exists (select null from sent_email_'.$suffix.' where sent_email_'.$suffix.'.sent_email_id = sent_emails.id) THEN 1 ELSE 0 END) as '.$key;
+    }
+
     public static function numberSentForBatch($emailId)
     {
         return self::where('email_id', $emailId)
