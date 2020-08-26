@@ -11,7 +11,7 @@ use PHPHtmlParser\Dom;
 class MailProcessor
 {
     protected $emailBody;
-    protected $batch;
+    protected $emailId;
     protected $sentEmail;
 
     public function __construct(SentEmail $sentEmail, $emailBody)
@@ -43,7 +43,7 @@ class MailProcessor
         EmailOpen::create([
             'sent_email_id' => $this->sentEmail->id,
             'email' => $this->sentEmail->email,
-            'batch' => $this->sentEmail->batch,
+            'email_id' => $this->sentEmail->email_id,
             'beacon_identifier' => $beaconIdentifier,
             'url' => $beaconUrl,
         ]);
@@ -77,7 +77,7 @@ class MailProcessor
 
         $link = EmailLink::create([
             'sent_email_id' => $this->sentEmail->id,
-            'batch' => $this->sentEmail->batch,
+            'email_id' => $this->sentEmail->email_id,
             'link_identifier' => $linkIdentifier,
             'original_url' => $originalUrl
         ]);

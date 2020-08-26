@@ -12,10 +12,4 @@ Route::prefix('/laravel-ses')->group(function() {
     // User tracking
     Route::get('beacon/{beaconIdentifier}', 'DavidNeal\LaravelSesTracker\Controllers\OpenController@open');
     Route::get('link/{linkId}', 'DavidNeal\LaravelSesTracker\Controllers\LinkController@click');
-
-    // Package api
-    Route::get('api/has/bounced/{email}', 'DavidNeal\LaravelSesTracker\Controllers\BounceController@hasBounced');
-    Route::get('api/has/complained/{email}', 'DavidNeal\LaravelSesTracker\Controllers\ComplaintController@hasComplained');
-    Route::get('api/stats/batch/{name}', 'DavidNeal\LaravelSesTracker\Controllers\StatsController@statsForBatch');
-    Route::get('api/stats/email/{email}', 'DavidNeal\LaravelSesTracker\Controllers\StatsController@statsForEmail');
 });

@@ -33,7 +33,7 @@ class SesMailer extends Mailer implements SesMailerInterface
         $sentEmail = SentEmail::create([
             'message_id' => $message->getId(),
             'email' => key($message->getTo()),
-            'batch' => $this->getBatch(),
+            'email_id' => $this->getEmailId(),
             'sent_at' => now(),
             'delivery_tracking' => $this->deliveryTracking,
             'complaint_tracking' => $this->complaintTracking,
@@ -43,9 +43,9 @@ class SesMailer extends Mailer implements SesMailerInterface
         return $sentEmail;
     }
 
-    public function statsForBatch($batchName)
+    public function statsForBatch($emailId)
     {
-        return Stats::statsForBatch($batchName);
+        return Stats::statsForBatch($emailId);
     }
 
     public function statsForEmail($email)

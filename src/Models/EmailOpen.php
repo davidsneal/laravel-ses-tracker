@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmailOpen extends Model
 {
-    protected $table = 'laravel_ses_tracker_email_opens';
+    protected $table = 'sent_email_opens';
 
     protected $guarded = [];
 }

@@ -13,11 +13,11 @@ class CreateEmailOpensTable extends Migration
      */
     public function up()
     {
-        Schema::create('laravel_ses_tracker_email_opens', function (Blueprint $table) {
+        Schema::create('sent_email_opens', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sent_email_id')->index();
             $table->string('email');
-            $table->string('batch')->nullable();
+            $table->unsignedBigInteger('email_id')->nullable()->index();
             $table->uuid('beacon_identifier');
             $table->string('url');
             $table->dateTime('opened_at')->nullable();
@@ -32,6 +32,6 @@ class CreateEmailOpensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laravel_ses_tracker_email_opens');
+        Schema::dropIfExists('sent_email_opens');
     }
 }

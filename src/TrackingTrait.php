@@ -12,7 +12,7 @@ trait TrackingTrait
     private $bounceTracking = false;
     private $complaintTracking = false;
     private $deliveryTracking = false;
-    private $batch;
+    private $emailId;
 
 
     public function setupTracking($emailBody, SentEmail $sentEmail)
@@ -29,15 +29,15 @@ trait TrackingTrait
         return $mailProcessor->getEmailBody();
     }
 
-    public function setBatch($batch)
+    public function setEmailId($id)
     {
-        $this->batch = $batch;
+        $this->email_id = $id;
         return $this;
     }
 
-    public function getBatch()
+    public function getEmailId()
     {
-        return $this->batch;
+        return $this->email_id;
     }
 
     public function enableOpenTracking()

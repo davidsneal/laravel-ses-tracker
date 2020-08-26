@@ -2,6 +2,7 @@
 
 namespace DavidNeal\LaravelSesTracker;
 
+use Aws\Credentials\Credentials;
 use Aws\Ses\SesClient;
 use Aws\Sns\SnsClient;
 
@@ -12,20 +13,16 @@ class SnsSetup
 
     public function __construct()
     {
+        $credentials = new Credentials(config('services.ses.key'), config('services.ses.secret'));
+
         $this->ses = new SesClient([
-            'credentials' => [
-                'key' => config('services.ses.key'),
-                'secret' => config('services.ses.secret')
-            ],
+            'credentials' => $credentials,
             'region' => config('services.ses.region'),
             'version' => 'latest'
         ]);
 
         $this->sns = new SnsClient([
-            'credentials' => [
-                'key' => config('services.ses.key'),
-                'secret' => config('services.ses.secret')
-            ],
+            'credentials' => $credentials,
             'region' => config('services.ses.region'),
             'version' => 'latest'
         ]);

@@ -13,11 +13,11 @@ class CreateSentEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('laravel_ses_tracker_sent_emails', function (Blueprint $table) {
+        Schema::create('sent_emails', function (Blueprint $table) {
             $table->id();
             $table->string('message_id');
             $table->string('email');
-            $table->string('batch')->nullable();
+            $table->unsignedBigInteger('email_id')->nullable()->index();
             $table->dateTime('sent_at')->nullable();
             $table->dateTime('delivered_at')->nullable();
             $table->boolean('unsubscribe')->default(false);
@@ -35,6 +35,6 @@ class CreateSentEmailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laravel_ses_tracker_sent_emails');
+        Schema::dropIfExists('sent_emails');
     }
 }

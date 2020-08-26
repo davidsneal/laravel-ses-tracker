@@ -7,9 +7,9 @@ use SesMail;
 
 class StatsController extends BaseController
 {
-    public function statsForBatch($batchName)
+    public function statsForBatch($emailId)
     {
-        return ['success' => true, 'data' => SesMail::statsForBatch($batchName)];
+        return ['success' => true, 'data' => SesMail::statsForBatch($emailId)];
     }
 
     public function statsForEmail($email)

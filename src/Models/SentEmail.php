@@ -3,10 +3,11 @@
 namespace DavidNeal\LaravelSesTracker\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class SentEmail extends Model
 {
-    protected $table = 'laravel_ses_tracker_sent_emails';
+    protected $table = 'sent_emails';
 
     protected $guarded = [];
 
@@ -36,74 +37,78 @@ class SentEmail extends Model
         return $this->hasOne(EmailComplaint::class);
     }
 
-    public static function numberSentForBatch($batchName)
+    public static function numberSentForBatch($emailId)
     {
-        return self::whereBatch($batchName)
+        return self::where('email_id', $emailId)
             ->count();
     }
 
-    public static function opensForBatch($batchName)
+    public static function opensForBatch($emailId)
     {
-        return self::join(
-                'laravel_ses_tracker_email_opens',
-                'laravel_ses_tracker_sent_emails.id',
-                'laravel_ses_tracker_email_opens.sent_email_id'
+        return self::select('sent_emails.email', 'opened_at as date')
+            ->join(
+                'sent_email_opens',
+                'sent_emails.id',
+                'sent_email_opens.sent_email_id'
             )
-            ->where('laravel_ses_tracker_sent_emails.batch', $batchName)
-            ->whereNotNull('laravel_ses_tracker_email_opens.opened_at')
-            ->count();
+            ->where('sent_emails.email_id', $emailId)
+            ->whereNotNull('sent_email_opens.opened_at')
+            ->get();
     }
 
-    public static function bouncesForBatch($batchName)
+    public static function bouncesForBatch($emailId)
     {
-        return self::join(
-                'laravel_ses_tracker_email_bounces',
-                'laravel_ses_tracker_sent_emails.id',
-                'laravel_ses_tracker_email_bounces.sent_email_id'
+        return self::select('sent_emails.email', 'bounced_at as date')
+            ->join(
+                'sent_email_bounces',
+                'sent_emails.id',
+                'sent_email_bounces.sent_email_id'
             )
-            ->where('laravel_ses_tracker_sent_emails.batch', $batchName)
-            ->whereNotNull('laravel_ses_tracker_email_bounces.bounced_at')
-            ->count();
+            ->where('sent_emails.email_id', $emailId)
+            ->whereNotNull('sent_email_bounces.bounced_at')
+            ->get();
     }
 
-    public static function complaintsForBatch($batchName)
+    public static function complaintsForBatch($emailId)
     {
-        return self::join(
-                'laravel_ses_tracker_email_complaints',
-                'laravel_ses_tracker_sent_emails.id',
-                'laravel_ses_tracker_email_complaints.sent_email_id'
+        return self::select('sent_emails.email', 'complained_at as date')
+            ->join(
+                'sent_email_complaints',
+                'sent_emails.id',
+                'sent_email_complaints.sent_email_id'
             )
-            ->where('laravel_ses_tracker_sent_emails.batch', $batchName)
-            ->whereNotNull('laravel_ses_tracker_email_complaints.complained_at')
-            ->count();
+            ->where('sent_emails.email_id', $emailId)
+            ->whereNotNull('sent_email_complaints.complained_at')
+            ->get();
     }
 
-    public static function deliveriesForBatch($batchName)
+    public static function deliveriesForBatch($emailId)
     {
-        return self::whereBatch($batchName)
+        return self::select('email', 'delivered_at as date')
+            ->where('email_id', $emailId)
             ->whereNotNull('delivered_at')
-            ->count();
+            ->get();
     }
 
-    public static function getAmountOfUsersThatClickedAtLeastOneLink($batchName)
+    public static function getNumberOfUsersThatClickedAtLeastOneLink($emailId)
     {
-        return self::where('laravel_ses_tracker_sent_emails.batch', $batchName)
-            ->join('laravel_ses_tracker_email_links', function ($join) {
+        return self::where('sent_emails.email_id', $emailId)
+            ->join('sent_email_links', function ($join) {
                 $join
-                    ->on('laravel_ses_tracker_sent_emails.id', '=', 'sent_email_id')
-                    ->where('laravel_ses_tracker_email_links.clicked', '=', true);
+                    ->on('sent_emails.id', '=', 'sent_email_id')
+                    ->where('sent_email_links.clicked', '=', true);
             })
             ->select('email')
-            ->count(\DB::raw('DISTINCT(email)'));
+            ->count(DB::raw('DISTINCT(email)'));
     }
 
-    public static function getLinkPopularityOrder($batchName)
+    public static function getLinkPopularityOrder($emailId)
     {
-        return self::where('laravel_ses_tracker_sent_emails.batch', $batchName)
-            ->join('laravel_ses_tracker_email_links', function ($join) {
+        return self::where('sent_emails.email_id', $emailId)
+            ->join('sent_email_links', function ($join) {
                 $join
-                    ->on('laravel_ses_tracker_sent_emails.id', '=', 'sent_email_id')
-                    ->where('laravel_ses_tracker_email_links.clicked', '=', true);
+                    ->on('sent_emails.id', '=', 'sent_email_id')
+                    ->where('sent_email_links.clicked', '=', true);
             })
             ->get()
             ->groupBy('original_url')

@@ -22,13 +22,13 @@ class SesMailFake implements SesMailerInterface, Mailer
     {
         //open tracking etc won't work if emails are sent to more than one recepient at a time
         if (sizeOf($view->to) > 1) {
-            throw new TooManyEmails("Tried to send to too many emails only one email may be set");
+            throw new TooManyEmails('Tried to send to too many emails, only one email may be set');
         }
 
         $sentEmail = SentEmail::create([
             'message_id' => rand(1, 999999),
             'email' => $view->to[0]['address'],
-            'batch' => $this->getBatch(),
+            'email_id' => $this->getEmailId(),
             'sent_at' => now(),
             'delivery_tracking' => $this->deliveryTracking,
             'complaint_tracking' => $this->complaintTracking,
@@ -38,9 +38,9 @@ class SesMailFake implements SesMailerInterface, Mailer
         return $sentEmail;
     }
 
-    public function statsForBatch($batchName)
+    public function statsForBatch($emailId)
     {
-        return Stats::statsForBatch($batchName);
+        return Stats::statsForBatch($emailId);
     }
 
     public function statsForEmail($email)

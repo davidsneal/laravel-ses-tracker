@@ -13,10 +13,10 @@ class CreateBouncesTable extends Migration
      */
     public function up()
     {
-        Schema::create('laravel_ses_tracker_email_bounces', function (Blueprint $table) {
+        Schema::create('sent_email_bounces', function (Blueprint $table) {
             $table->id();
             $table->string('message_id');
-            $table->unsignedBigInteger('sent_email_id');
+            $table->unsignedBigInteger('sent_email_id')->index();
             $table->string('type');
             $table->string('email');
             $table->dateTime('bounced_at');
@@ -31,6 +31,6 @@ class CreateBouncesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laravel_ses_tracker_email_bounces');
+        Schema::dropIfExists('sent_email_bounces');
     }
 }

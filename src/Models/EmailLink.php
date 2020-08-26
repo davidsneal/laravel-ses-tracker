@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmailLink extends Model
 {
-    protected $table = 'laravel_ses_tracker_email_links';
+    protected $table = 'sent_email_links';
 
     protected $guarded = [];
 
