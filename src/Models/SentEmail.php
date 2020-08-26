@@ -47,6 +47,7 @@ class SentEmail extends Model
             ->join('contacts', 'sent_emails.contact_id', '=', 'contacts.id')
             ->where('sent_emails.email_id', $emailId)
             ->groupBy('sent_emails.id')
+            ->orderBy('contacts.first_name')
             ->get();
     }
 

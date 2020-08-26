@@ -62,9 +62,15 @@ class Stats
             return $stat;
         });
 
+        try {
+            $percentage = (int) number_format(($stats->count() / $total) * 100, 0);
+        } catch (\Exception $e) {
+            $percentage = 0;
+        }
+
         return [
             'data' => $stats,
-            'percentage_sent' => (int) number_format(($stats->count() / $total) * 100, 0),
+            'percentage_sent' => $percentage,
             'counts' => [
                 'sent' => $stats->count(),
                 'delivered' => $stats->where('delivered', true)->count(),
