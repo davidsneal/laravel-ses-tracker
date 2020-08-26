@@ -48,12 +48,23 @@ class Stats
         ];
     }
 
-    public static function statsForBatch($emailId)
+    public static function statsForBatch($emailId, $total)
     {
         $stats = SentEmail::getStats($emailId);
 
+        $stats = $stats->map(function($stat) {
+            if ($stat['complained']) $stat['status'] = 'complained';
+            elseif ($stat['bounced']) $stat['status'] = 'bounced';
+            elseif ($stat['opened']) $stat['status'] = 'opened';
+            elseif ($stat['delivered']) $stat['status'] = 'delivered';
+            else $stat['status'] = 'sending';
+
+            return $stat;
+        });
+
         return [
             'data' => $stats,
+            'percentage_sent' => (int) number_format((count($stats) / $total) * 100, 0),
             'counts' => [
                 'sent' => $stats->count(),
                 'delivered' => $stats->where('delivered', true)->count(),

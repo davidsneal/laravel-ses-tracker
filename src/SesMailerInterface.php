@@ -7,7 +7,7 @@ use DavidNeal\LaravelSesTracker\Models\SentEmail;
 interface SesMailerInterface
 {
     public function initMessage($message);
-    public function statsForBatch($emailId);
+    public function statsForBatch($emailId, $total);
     public function statsForEmail($email);
     public function setupTracking($setupTracking, SentEmail $sentEmail);
     public function setEmailId($id);
