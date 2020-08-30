@@ -39,9 +39,9 @@ class SesMailFake implements SesMailerInterface, Mailer
         return $sentEmail;
     }
 
-    public function statsForBatch($emailId)
+    public function statsForBatch($emailId, $total)
     {
-        return Stats::statsForBatch($emailId);
+        return Stats::statsForBatch($emailId, $total);
     }
 
     public function statsForEmail($email)

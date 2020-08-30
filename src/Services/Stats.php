@@ -68,16 +68,20 @@ class Stats
             $percentage = 0;
         }
 
+        $deliveredCount = $stats->where('delivered', true)->count();
+        $openedCount = $stats->where('opened', true)->count();
+
         return [
             'data' => $stats,
             'percentage_sent' => $percentage,
             'counts' => [
                 'sent' => $stats->count(),
-                'delivered' => $stats->where('delivered', true)->count(),
-                'opened' => $stats->where('opened', true)->count(),
+                'delivered' => $deliveredCount,
+                'opened' => $openedCount,
                 'bounced' => $stats->where('bounced', true)->count(),
                 'complained' => $stats->where('complained', true)->count(),
                 'sending' => $stats->where('status', 'sending')->count(),
+                'unopened' => $deliveredCount - $openedCount,
             ],
             'clicks' => SentEmail::getNumberOfUsersThatClickedAtLeastOneLink($emailId),
             'link_popularity' => SentEmail::getLinkPopularityOrder($emailId)

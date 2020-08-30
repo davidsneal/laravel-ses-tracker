@@ -39,14 +39,26 @@ class SentEmail extends Model
 
     public static function getStats($emailId)
     {
-        return self::select('sent_emails.email', 'sent_emails.contact_id', 'contacts.first_name', 'contacts.last_name')
+        return self::select(
+                'sent_emails.id',
+                'sent_emails.email',
+                'sent_emails.contact_id',
+                'contacts.first_name',
+                'contacts.last_name',
+                'sent_emails.delivered_at',
+                'sent_email_opens.opened_at',
+                'sent_email_bounces.bounced_at',
+                'sent_email_complaints.complained_at',
+            )
             ->selectRaw('CASE WHEN (sent_emails.delivered_at IS NULL) THEN 0 ELSE 1 END as delivered')
-            ->selectRaw(self::prepRawSelect('opens', 'opened'))
+            ->selectRaw('(CASE WHEN exists(select null from sent_email_opens where sent_email_opens.sent_email_id = sent_emails.id AND sent_email_opens.opened_at is not null) THEN 1 ELSE 0 END) as opened')
             ->selectRaw(self::prepRawSelect('bounces', 'bounced'))
             ->selectRaw(self::prepRawSelect('complaints', 'complained'))
-            ->join('contacts', 'sent_emails.contact_id', '=', 'contacts.id')
+            ->leftJoin('sent_email_opens', 'sent_email_opens.sent_email_id', '=', 'sent_emails.id')
+            ->leftJoin('sent_email_bounces', 'sent_email_bounces.sent_email_id', '=', 'sent_emails.id')
+            ->leftJoin('sent_email_complaints', 'sent_email_complaints.sent_email_id', '=', 'sent_emails.id')
+            ->leftJoin('contacts', 'sent_emails.contact_id', '=', 'contacts.id')
             ->where('sent_emails.email_id', $emailId)
-            ->groupBy('sent_emails.id')
             ->orderBy('contacts.first_name')
             ->get();
     }
