@@ -3,6 +3,7 @@
 namespace DavidNeal\LaravelSesTracker\Services;
 
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 use DavidNeal\LaravelSesTracker\Models\SentEmail;
 use DavidNeal\LaravelSesTracker\Models\EmailLink;
@@ -48,6 +49,16 @@ class Stats
         ];
     }
 
+    private static function formatDates($stat)
+    {
+        $stat['delivered_at'] = $stat['delivered_at'] ? Carbon::parse($stat['delivered_at'])->toIso8601String() : null;
+        $stat['bounced_at'] = $stat['bounced_at'] ? Carbon::parse($stat['bounced_at'])->toIso8601String() : null;
+        $stat['complained_at'] = $stat['complained_at'] ? Carbon::parse($stat['complained_at'])->toIso8601String() : null;
+        $stat['opened_at'] = $stat['opened_at'] ? Carbon::parse($stat['opened_at'])->toIso8601String() : null;
+
+        return $stat;
+    }
+
     public static function statsForBatch($emailId, $total)
     {
         $stats = SentEmail::getStats($emailId);
@@ -59,7 +70,7 @@ class Stats
             elseif ($stat['delivered']) $stat['status'] = 'delivered';
             else $stat['status'] = 'sending';
 
-            return $stat;
+            return self::formatDates($stat);
         });
 
         try {
